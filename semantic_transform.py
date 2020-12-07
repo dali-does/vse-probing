@@ -179,7 +179,6 @@ class Transformer():
         for sentence in doc:
             # Construct disambiguation sentence
             wordseq = [word.text for word in sentence.words]
-            #print("Sentence: ",wordseq)
     
             (j, word, pos, replacements) = find_pos_and_candidates(sentence,
                                                                    wordseq,
@@ -259,8 +258,6 @@ class Transformer():
                 if score >= best_score:
                     best_score = score
                     best_str = " ".join(alternatives[i])
-            #alts = [" ".join(alt) for alt in alternatives]
-            #scores = self.scorer.get_scores(alts)
 
         best_str = best_str.replace(" .", ".")
         best_str = best_str.replace(" ,", ",")
@@ -311,8 +308,6 @@ class Transformer():
                         alternatives[i][last_index] = mimic_capitalization("a", last_word)
 
             alternatives[i][j] = " ".join(rep_words)
-    #    for i in range(0, N):
-    #        print(" ".join(alternatives[i]))
         return alternatives
 
     #------------------------------------------------------------------------------------#
@@ -540,7 +535,6 @@ class CaptionDataset(torch.utils.data.Dataset):
         return len(self.captions)
 
     def __getitem__(self, index):
-        #caption = self.annotations[index]['caption'].strip()
         caption = self.captions[index].strip()
         if '.' not in caption:
             caption += '.'
@@ -554,7 +548,7 @@ class CaptionDataset(torch.utils.data.Dataset):
 
 if __name__=='__main__':
 
-    #stanza.download('en') # download English model
+    stanza.download('en') # download English model
 
     # Parse arguments
     args_parser = argparse.ArgumentParser()
@@ -575,7 +569,7 @@ if __name__=='__main__':
     refresh_file=opts.generate_dictionary
 
     # Select annotation file
-    annotations_path = '%s/annotations/captions_%s.json' % (dataDir, dataType)
+    annotations_path = '%s/captions_%s.json' % (dataDir, dataType)
     caption_path = opts.captions
 
     dict_path = opts.dict
@@ -600,7 +594,7 @@ if __name__=='__main__':
 
     alt_captions = [""]*len(parsed_captions)
     i = 0 
-    altFile = '%s/annotations/alt_captions_%s.json'%(dataDir,dataType)
+    altFile = '%s/alt_captions_%s.json'%(dataDir,dataType)
     altFile = open(altFile, 'w+')
 
     for batch_offset in range(0, len(parsed_captions), batch_size):
