@@ -143,3 +143,25 @@ optional arguments:
   --probe {mlp,linear}  Which probing model to use.
 ```
 
+# Cite
+
+Please cite the our paper if you use this code (or derivatives) in your own work:
+
+```
+@inproceedings{dahlgren-lindstrom-etal-2020-probing,
+    title = "Probing Multimodal Embeddings for Linguistic Properties: the Visual-Semantic Case",
+    author = {Dahlgren Lindstr{\"o}m, Adam  and
+      Bj{\"o}rklund, Johanna  and
+      Bensch, Suna  and
+      Drewes, Frank},
+    booktitle = "Proceedings of the 28th International Conference on Computational Linguistics",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.coling-main.64",
+    pages = "730--744",
+}
+
+```
+
