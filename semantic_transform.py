@@ -7,7 +7,7 @@ from progress import progressbar
 
 from collections import defaultdict
 
-from berttest import BertScorer
+from bertscorer import BertScorer
 
 import stanza
 
