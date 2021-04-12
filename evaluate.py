@@ -8,8 +8,8 @@ import torch
 #from pycocotools.coco import COCO
 from keras.utils import to_categorical
 
-#from embeddings import *
-#from probing_tasks import probe_num_objects, probe_object_categories, probe_tampered_caption
+from embeddings import *
+from probing_tasks import probe_num_objects, probe_object_categories, probe_tampered_caption
 
 from probing_model import MultiLayerProbingModel, LinearProbingModel
 
@@ -234,7 +234,7 @@ if __name__=="__main__":
     # This follows the previous form of doing multiple tasks at once.
     for embedding_model in models:
         print("Probing...", embedding_model.__name__)
-        embs = compute_embeddings(probing_model, embedding_model, train_set_annotation,
+        embs = compute_embeddings(embedding_model, train_set_annotation,
                                   test_set_annotation, merge_funcs)
         model_results = []
         for probing_task in probing_tasks:
@@ -244,7 +244,7 @@ if __name__=="__main__":
                 reps = []
                 for k in range(num_repetitions):
                     start = time.time()
-                    m, res = probing_task(emb_pair[0], annotations_train, emb_pair[1],
+                    m, res = probing_task(probing_model, emb_pair[0], annotations_train, emb_pair[1],
                                          annotations_test, train_indices, val_indices)
                     reps.append((res[2], np.array(res[3])))
                     del m
